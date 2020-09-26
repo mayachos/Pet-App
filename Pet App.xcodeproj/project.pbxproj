@@ -3,27 +3,44 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63521920251E681F00A4E876 /* AnimatedCollectionViewLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 6352191F251E681F00A4E876 /* AnimatedCollectionViewLayout */; };
+		636F81BE251ED9E100B35A1E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 636F81BD251ED9E100B35A1E /* Images.xcassets */; };
+		636F81C5251EE05400B35A1E /* Dog - 15305.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 636F81C1251EE05300B35A1E /* Dog - 15305.mp4 */; };
+		636F81C6251EE05400B35A1E /* Dog - 14869.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 636F81C2251EE05300B35A1E /* Dog - 14869.mp4 */; };
+		636F81C7251EE05400B35A1E /* Cat - 2879.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 636F81C3251EE05400B35A1E /* Cat - 2879.mp4 */; };
+		636F81C8251EE05400B35A1E /* Woodhouse'S Toad - 397.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 636F81C4251EE05400B35A1E /* Woodhouse'S Toad - 397.mp4 */; };
 		63F31B68251C536500777BDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F31B67251C536500777BDE /* AppDelegate.swift */; };
 		63F31B6A251C536500777BDE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F31B69251C536500777BDE /* SceneDelegate.swift */; };
 		63F31B6C251C536500777BDE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F31B6B251C536500777BDE /* ViewController.swift */; };
 		63F31B6F251C536500777BDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63F31B6D251C536500777BDE /* Main.storyboard */; };
-		63F31B71251C536700777BDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63F31B70251C536700777BDE /* Assets.xcassets */; };
 		63F31B74251C536700777BDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63F31B72251C536700777BDE /* LaunchScreen.storyboard */; };
+		63F31B86251C877000777BDE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F31B85251C877000777BDE /* HomeViewController.swift */; };
+		63F31B8A251C8CED00777BDE /* blueblack.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 63F31B89251C8CED00777BDE /* blueblack.jpg */; };
+		DB0809444FAFB86D327709F2 /* Pods_Pet_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91B4BE113C39F0E242DDB662 /* Pods_Pet_App.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		636F81BD251ED9E100B35A1E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		636F81C1251EE05300B35A1E /* Dog - 15305.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dog - 15305.mp4"; sourceTree = "<group>"; };
+		636F81C2251EE05300B35A1E /* Dog - 14869.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dog - 14869.mp4"; sourceTree = "<group>"; };
+		636F81C3251EE05400B35A1E /* Cat - 2879.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cat - 2879.mp4"; sourceTree = "<group>"; };
+		636F81C4251EE05400B35A1E /* Woodhouse'S Toad - 397.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Woodhouse'S Toad - 397.mp4"; sourceTree = "<group>"; };
 		63F31B64251C536500777BDE /* Pet App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pet App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63F31B67251C536500777BDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63F31B69251C536500777BDE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		63F31B6B251C536500777BDE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		63F31B6E251C536500777BDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		63F31B70251C536700777BDE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63F31B73251C536700777BDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63F31B75251C536700777BDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63F31B85251C877000777BDE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		63F31B89251C8CED00777BDE /* blueblack.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blueblack.jpg; sourceTree = "<group>"; };
+		91B4BE113C39F0E242DDB662 /* Pods_Pet_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pet_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A11ACECC60646E670CC53D89 /* Pods-Pet App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pet App.release.xcconfig"; path = "Target Support Files/Pods-Pet App/Pods-Pet App.release.xcconfig"; sourceTree = "<group>"; };
+		C227C46C42DFACA062138D62 /* Pods-Pet App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pet App.debug.xcconfig"; path = "Target Support Files/Pods-Pet App/Pods-Pet App.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +48,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63521920251E681F00A4E876 /* AnimatedCollectionViewLayout in Frameworks */,
+				DB0809444FAFB86D327709F2 /* Pods_Pet_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		621A02112BA1A0D015DA4075 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				91B4BE113C39F0E242DDB662 /* Pods_Pet_App.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		63F31B5B251C536400777BDE = {
 			isa = PBXGroup;
 			children = (
 				63F31B66251C536500777BDE /* Pet App */,
 				63F31B65251C536500777BDE /* Products */,
+				FA2D99FF2DBB58D684BB6327 /* Pods */,
+				621A02112BA1A0D015DA4075 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +85,30 @@
 		63F31B66251C536500777BDE /* Pet App */ = {
 			isa = PBXGroup;
 			children = (
+				636F81C3251EE05400B35A1E /* Cat - 2879.mp4 */,
+				636F81C2251EE05300B35A1E /* Dog - 14869.mp4 */,
+				636F81C1251EE05300B35A1E /* Dog - 15305.mp4 */,
+				636F81C4251EE05400B35A1E /* Woodhouse'S Toad - 397.mp4 */,
 				63F31B67251C536500777BDE /* AppDelegate.swift */,
 				63F31B69251C536500777BDE /* SceneDelegate.swift */,
 				63F31B6B251C536500777BDE /* ViewController.swift */,
+				63F31B85251C877000777BDE /* HomeViewController.swift */,
 				63F31B6D251C536500777BDE /* Main.storyboard */,
-				63F31B70251C536700777BDE /* Assets.xcassets */,
+				63F31B89251C8CED00777BDE /* blueblack.jpg */,
+				636F81BD251ED9E100B35A1E /* Images.xcassets */,
 				63F31B72251C536700777BDE /* LaunchScreen.storyboard */,
 				63F31B75251C536700777BDE /* Info.plist */,
 			);
 			path = "Pet App";
+			sourceTree = "<group>";
+		};
+		FA2D99FF2DBB58D684BB6327 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C227C46C42DFACA062138D62 /* Pods-Pet App.debug.xcconfig */,
+				A11ACECC60646E670CC53D89 /* Pods-Pet App.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,15 +118,20 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63F31B78251C536700777BDE /* Build configuration list for PBXNativeTarget "Pet App" */;
 			buildPhases = (
+				1B9B01745787B472D78C9FC3 /* [CP] Check Pods Manifest.lock */,
 				63F31B60251C536400777BDE /* Sources */,
 				63F31B61251C536400777BDE /* Frameworks */,
 				63F31B62251C536400777BDE /* Resources */,
+				29FE439C13975AB6F339F73B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Pet App";
+			packageProductDependencies = (
+				6352191F251E681F00A4E876 /* AnimatedCollectionViewLayout */,
+			);
 			productName = "Pet App";
 			productReference = 63F31B64251C536500777BDE /* Pet App.app */;
 			productType = "com.apple.product-type.application";
@@ -110,6 +159,9 @@
 				Base,
 			);
 			mainGroup = 63F31B5B251C536400777BDE;
+			packageReferences = (
+				6352191E251E681F00A4E876 /* XCRemoteSwiftPackageReference "AnimatedCollectionViewLayout" */,
+			);
 			productRefGroup = 63F31B65251C536500777BDE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -124,13 +176,60 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				636F81C8251EE05400B35A1E /* Woodhouse'S Toad - 397.mp4 in Resources */,
+				636F81C7251EE05400B35A1E /* Cat - 2879.mp4 in Resources */,
 				63F31B74251C536700777BDE /* LaunchScreen.storyboard in Resources */,
-				63F31B71251C536700777BDE /* Assets.xcassets in Resources */,
+				636F81C5251EE05400B35A1E /* Dog - 15305.mp4 in Resources */,
+				636F81BE251ED9E100B35A1E /* Images.xcassets in Resources */,
+				636F81C6251EE05400B35A1E /* Dog - 14869.mp4 in Resources */,
+				63F31B8A251C8CED00777BDE /* blueblack.jpg in Resources */,
 				63F31B6F251C536500777BDE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1B9B01745787B472D78C9FC3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Pet App-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		29FE439C13975AB6F339F73B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pet App/Pods-Pet App-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pet App/Pods-Pet App-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Pet App/Pods-Pet App-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		63F31B60251C536400777BDE /* Sources */ = {
@@ -140,6 +239,7 @@
 				63F31B6C251C536500777BDE /* ViewController.swift in Sources */,
 				63F31B68251C536500777BDE /* AppDelegate.swift in Sources */,
 				63F31B6A251C536500777BDE /* SceneDelegate.swift in Sources */,
+				63F31B86251C877000777BDE /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +383,7 @@
 		};
 		63F31B79251C536700777BDE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C227C46C42DFACA062138D62 /* Pods-Pet App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -301,6 +402,7 @@
 		};
 		63F31B7A251C536700777BDE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A11ACECC60646E670CC53D89 /* Pods-Pet App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -339,6 +441,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6352191E251E681F00A4E876 /* XCRemoteSwiftPackageReference "AnimatedCollectionViewLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/KelvinJin/AnimatedCollectionViewLayout.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6352191F251E681F00A4E876 /* AnimatedCollectionViewLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6352191E251E681F00A4E876 /* XCRemoteSwiftPackageReference "AnimatedCollectionViewLayout" */;
+			productName = AnimatedCollectionViewLayout;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 63F31B5C251C536400777BDE /* Project object */;
 }
