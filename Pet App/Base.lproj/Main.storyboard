@@ -75,7 +75,7 @@
         <!--Item-->
         <scene sceneID="JXD-fs-Fym">
             <objects>
-                <viewController id="fWt-cy-fYS" sceneMemberID="viewController">
+                <viewController id="fWt-cy-fYS" customClass="RecordViewController" customModule="Pet_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dA9-zs-bkH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -87,6 +87,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q6t-xH-BVf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-58" y="560"/>
+        </scene>
+        <!--Upload View Controller-->
+        <scene sceneID="Lih-U6-n06">
+            <objects>
+                <viewController storyboardIdentifier="upload" id="wPo-zH-dyf" customClass="UploadViewController" customModule="Pet_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dHI-H0-gAV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="f3U-j6-bsD"/>
+                        <color key="backgroundColor" red="0.93556517360000002" green="0.90988117459999995" blue="0.82860934730000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l56-Zh-0Ov" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-59" y="1234"/>
         </scene>
         <!--Item-->
         <scene sceneID="N5L-pV-DFg">
@@ -138,6 +153,9 @@
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="unselectedTabTintColor">
                                 <color key="value" systemColor="systemIndigoColor"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="waveHeight">
+                                <real key="value" value="25"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </tabBar>

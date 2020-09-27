@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		63521920251E681F00A4E876 /* AnimatedCollectionViewLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 6352191F251E681F00A4E876 /* AnimatedCollectionViewLayout */; };
+		635339A325203150001FDFAD /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635339A225203150001FDFAD /* RecordViewController.swift */; };
+		635339A72520579A001FDFAD /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635339A62520579A001FDFAD /* UploadViewController.swift */; };
 		636F81BE251ED9E100B35A1E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 636F81BD251ED9E100B35A1E /* Images.xcassets */; };
 		636F81C5251EE05400B35A1E /* Dog - 15305.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 636F81C1251EE05300B35A1E /* Dog - 15305.mp4 */; };
 		636F81C6251EE05400B35A1E /* Dog - 14869.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 636F81C2251EE05300B35A1E /* Dog - 14869.mp4 */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		635339A225203150001FDFAD /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
+		635339A62520579A001FDFAD /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		636F81BD251ED9E100B35A1E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		636F81C1251EE05300B35A1E /* Dog - 15305.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dog - 15305.mp4"; sourceTree = "<group>"; };
 		636F81C2251EE05300B35A1E /* Dog - 14869.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dog - 14869.mp4"; sourceTree = "<group>"; };
@@ -93,6 +97,8 @@
 				63F31B69251C536500777BDE /* SceneDelegate.swift */,
 				63F31B6B251C536500777BDE /* ViewController.swift */,
 				63F31B85251C877000777BDE /* HomeViewController.swift */,
+				635339A225203150001FDFAD /* RecordViewController.swift */,
+				635339A62520579A001FDFAD /* UploadViewController.swift */,
 				63F31B6D251C536500777BDE /* Main.storyboard */,
 				63F31B89251C8CED00777BDE /* blueblack.jpg */,
 				636F81BD251ED9E100B35A1E /* Images.xcassets */,
@@ -237,7 +243,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				63F31B6C251C536500777BDE /* ViewController.swift in Sources */,
+				635339A72520579A001FDFAD /* UploadViewController.swift in Sources */,
 				63F31B68251C536500777BDE /* AppDelegate.swift in Sources */,
+				635339A325203150001FDFAD /* RecordViewController.swift in Sources */,
 				63F31B6A251C536500777BDE /* SceneDelegate.swift in Sources */,
 				63F31B86251C877000777BDE /* HomeViewController.swift in Sources */,
 			);
@@ -388,6 +396,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 92TXL2GUQJ;
 				INFOPLIST_FILE = "Pet App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -407,6 +416,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 92TXL2GUQJ;
 				INFOPLIST_FILE = "Pet App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

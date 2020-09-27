@@ -49,6 +49,14 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSCameraUsageDescription</key>
+	<string>カメラの起動を許可します</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>マイクのアクセスを許可します</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>フォトライブラリのアクセスを許可します</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>フォトライブラリへの書き込みを許可します</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
