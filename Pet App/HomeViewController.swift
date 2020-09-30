@@ -15,11 +15,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,  UICollect
     
     let isInfinity = true //無限スクロール
     @IBOutlet var collectionView: UICollectionView!
+    var player: AVPlayer?
+    
     var pageCount = 7
     var color: [UIColor] = [.red, .yellow, .green, .blue, .purple, .systemIndigo, .cyan ]
     
-    var playerController = AVPlayerViewController()
-    var player = AVPlayer()
+    //var playerController = AVPlayerLayer()
+    //var player = AVPlayer()
+    private var observers: (NSObjectProtocol)?
     
 
     override func viewDidLoad() {
@@ -27,17 +30,20 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,  UICollect
         collectionView.delegate = self
         collectionView.dataSource = self
         self.layoutCollection()
-        self.moviePlayer()
+        let fileName = "Dog - 14869"
+        let fileExtension = "mp4"
+        let url = Bundle.main.url(forResource: fileName, withExtension: fileExtension)!
+        player = AVPlayer(url: url)
     }
     
     func layoutCollection() {
         let layout = AnimatedCollectionViewLayout()
-        layout.itemSize = CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
+        layout.itemSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.width)
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
         collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
-        layout.animator = RotateInOutAttributesAnimator()
+        layout.animator = ParallaxAttributesAnimator()
         collectionView.collectionViewLayout = layout
     }
     
@@ -50,34 +56,51 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,  UICollect
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         let fixedIndex = isInfinity ? indexPath.row % pageCount : indexPath.row
-        cell.backgroundColor = color[fixedIndex]
+        let moviePlayerController = AVPlayerViewController()
+        moviePlayerController.player = player
+        moviePlayerController.view.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.width)
+        moviePlayerController.videoGravity = .resizeAspectFill
+        //moviePlayerController.view.sizeToFit()
+        moviePlayerController.showsPlaybackControls = false
+        cell.addSubview(moviePlayerController.view)
+        player?.play()
+        //cell.backgroundColor = color[fixedIndex]
         return cell
-    }
-    
-    func moviePlayer() {
-        /// Audio sessionを動画再生向けのものに設定し、activeにします
-                let audioSession = AVAudioSession.sharedInstance()
-                do {
-                    try audioSession.setCategory(.playback, mode: .moviePlayback)
-                        
-                } catch {
-                    print("Setting category to AVAudioSessionCategoryPlayback failed.")
-                }
-
-                do {
-                    try audioSession.setActive(true)
-                    print("Audio session set active !!")
-                } catch {
-                    
-                }
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         //carouselView.scrollToFirstItem()
     }
+    
+//    func playMovie() -> AVPlayer{
+//        let fileName = "Cat - 2879"
+//        let fileExtension = "mp4"
+//        //guard
+//        let url = Bundle.main.url(forResource: fileName, withExtension: fileExtension)!
+////        else {
+////            print("Url is nil")
+////            return
+////        }
+//        let player = AVPlayer(url: url)
+//        player.play()
+//        // AVPlayer用のLayerを生成
+//        playerLayer = AVPlayerLayer(player: player)
+//        playerLayer.frame = CGRect(x: 0, y: self.view.bounds.height / 4, width: self.view.bounds.width, height: self.view.bounds.width)
+//        playerLayer.videoGravity = .resizeAspectFill
+//        view.layer.insertSublayer(playerLayer, at: 0) // 動画をレイヤーとして追加
+//        // 最後まで再生したら最初から再生する
+//        let playerObserver = NotificationCenter.default.addObserver(
+//            forName: .AVPlayerItemDidPlayToEndTime,
+//            object: player.currentItem,
+//            queue: .main) { [weak playerLayer] _ in
+//            playerLayer?.player?.seek(to: CMTime.zero)
+//            playerLayer?.player?.play()
+//        }
+//        observers = (playerObserver)
+//        return player
+//    }
     
 
     /*

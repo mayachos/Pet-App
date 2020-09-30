@@ -8,6 +8,7 @@
 import UIKit
 import AVFoundation
 import Photos
+import SnapKit
 
 class RecordViewController: UIViewController, AVCaptureFileOutputRecordingDelegate {
     
@@ -15,7 +16,9 @@ class RecordViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     
     var recordButton: UIButton!
     var isRecording = false
-    var timer: Timer?
+    var videoTimer: Timer?
+    var loadTimer: Timer?
+    var sendUrl: URL!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +50,7 @@ class RecordViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             
             //プレビュー
             let videoLayer: AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-            videoLayer.frame = self.view.bounds
+            videoLayer.frame = CGRect(x: 0, y: (self.view.bounds.height - self.view.bounds.width) / 2, width: self.view.bounds.width, height: self.view.bounds.width)
             videoLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
             self.view.layer.addSublayer(videoLayer)
             
@@ -81,25 +84,14 @@ class RecordViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             isRecording = true
             recordButton.backgroundColor = UIColor.red
             recordButton.setTitle("録画中", for: .normal)
-            self.timer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(RecordViewController.toUploadView(_:)), userInfo: nil, repeats: false)
+            self.videoTimer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(self.stopVideo(_:)), userInfo: nil, repeats: false)
         } else {
-            toUploadView(sender)
+            stopVideo(sender)
         }
         
     }
     
-    func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
-        //ライブラリへ保存
-        PHPhotoLibrary.shared().performChanges({PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputFileURL)
-        }) {
-            completed, error in
-            if completed {
-                print("Video is saved!")
-            }
-        }
-    }
-    
-    @objc func toUploadView(_ sender: Any) {
+    @objc func stopVideo(_ sender: Any) {
         //録画終了
         fileOutput.stopRecording()
         
@@ -107,12 +99,36 @@ class RecordViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         recordButton.backgroundColor = UIColor.gray
         recordButton.setTitle("録画開始", for: .normal)
         
-        timer?.invalidate()
+        videoTimer?.invalidate()
         
+    }
+    
+    func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
+        let croppedMovieFileURL: URL = outputFileURL
+        
+        //録画した動画を正方形にクロッピング
+        MovieCropper.exportSquareMovie(sourceURL: outputFileURL, destinationURL: croppedMovieFileURL, fileType: .mov, completion: {
+        //ライブラリへ保存
+            PHPhotoLibrary.shared().performChanges({PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputFileURL)
+            }) {
+                completed, error in
+                if completed {
+                    print("Video is saved!")
+                }
+            }
+        })
+        sendUrl = outputFileURL
+        self.loadTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.toUploadView(_:)), userInfo: nil, repeats: false)
+    }
+    
+    @objc func toUploadView(_ sender: Any) {
         let storyboard: UIStoryboard = self.storyboard!
         let nextVC = storyboard.instantiateViewController(identifier: "upload") as! UploadViewController
+        print(sendUrl as Any)
+        nextVC.setUrl = sendUrl
         self.present(nextVC, animated: true, completion: nil)
     }
+    
     
 
     /*
