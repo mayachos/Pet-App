@@ -72,6 +72,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		632CE58C2525E2C300D073AC /* CameraController */ = {
+			isa = PBXGroup;
+			children = (
+				63EAD09425229C7100F405FC /* MovieCropper.swift */,
+				635339A225203150001FDFAD /* RecordViewController.swift */,
+				635339A62520579A001FDFAD /* UploadViewController.swift */,
+			);
+			path = CameraController;
+			sourceTree = "<group>";
+		};
 		63F31B5B251C536400777BDE = {
 			isa = PBXGroup;
 			children = (
@@ -100,9 +110,7 @@
 				63F31B67251C536500777BDE /* AppDelegate.swift */,
 				63F31B69251C536500777BDE /* SceneDelegate.swift */,
 				63F31B6B251C536500777BDE /* ViewController.swift */,
-				635339A225203150001FDFAD /* RecordViewController.swift */,
-				635339A62520579A001FDFAD /* UploadViewController.swift */,
-				63EAD09425229C7100F405FC /* MovieCropper.swift */,
+				632CE58C2525E2C300D073AC /* CameraController */,
 				63F31B85251C877000777BDE /* HomeViewController.swift */,
 				63F31B6D251C536500777BDE /* Main.storyboard */,
 				63F31B89251C8CED00777BDE /* blueblack.jpg */,
