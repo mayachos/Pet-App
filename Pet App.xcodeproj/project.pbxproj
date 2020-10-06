@@ -7,10 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6320C3C1252C5656005A417A /* Contents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6320C3C0252C5656005A417A /* Contents.swift */; };
+		632CE5922526DE2E00D073AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 632CE5912526DE2E00D073AC /* GoogleService-Info.plist */; };
+		632CE5A72527146D00D073AC /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632CE5A62527146D00D073AC /* UserViewController.swift */; };
+		632CE5FD2529656A00D073AC /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632CE5FC2529656A00D073AC /* StartViewController.swift */; };
 		63521920251E681F00A4E876 /* AnimatedCollectionViewLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 6352191F251E681F00A4E876 /* AnimatedCollectionViewLayout */; };
 		635339A325203150001FDFAD /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635339A225203150001FDFAD /* RecordViewController.swift */; };
 		635339A72520579A001FDFAD /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635339A62520579A001FDFAD /* UploadViewController.swift */; };
 		635339AC2520B946001FDFAD /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 635339AB2520B946001FDFAD /* SnapKit */; };
+		635B92A62529BC170029A180 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 635B92A52529BC170029A180 /* IQKeyboardManagerSwift */; };
 		636F81BE251ED9E100B35A1E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 636F81BD251ED9E100B35A1E /* Images.xcassets */; };
 		636F81C5251EE05400B35A1E /* Dog - 15305.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 636F81C1251EE05300B35A1E /* Dog - 15305.mp4 */; };
 		636F81C6251EE05400B35A1E /* Dog - 14869.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 636F81C2251EE05300B35A1E /* Dog - 14869.mp4 */; };
@@ -28,6 +33,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6320C3C0252C5656005A417A /* Contents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contents.swift; sourceTree = "<group>"; };
+		632CE5912526DE2E00D073AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		632CE5A62527146D00D073AC /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		632CE5FC2529656A00D073AC /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		635339A225203150001FDFAD /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		635339A62520579A001FDFAD /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		636F81BD251ED9E100B35A1E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -56,6 +65,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				635339AC2520B946001FDFAD /* SnapKit in Frameworks */,
+				635B92A62529BC170029A180 /* IQKeyboardManagerSwift in Frameworks */,
 				63521920251E681F00A4E876 /* AnimatedCollectionViewLayout in Frameworks */,
 				DB0809444FAFB86D327709F2 /* Pods_Pet_App.framework in Frameworks */,
 			);
@@ -110,12 +120,16 @@
 				63F31B67251C536500777BDE /* AppDelegate.swift */,
 				63F31B69251C536500777BDE /* SceneDelegate.swift */,
 				63F31B6B251C536500777BDE /* ViewController.swift */,
-				632CE58C2525E2C300D073AC /* CameraController */,
+				632CE5FC2529656A00D073AC /* StartViewController.swift */,
 				63F31B85251C877000777BDE /* HomeViewController.swift */,
+				6320C3C0252C5656005A417A /* Contents.swift */,
+				632CE58C2525E2C300D073AC /* CameraController */,
+				632CE5A62527146D00D073AC /* UserViewController.swift */,
 				63F31B6D251C536500777BDE /* Main.storyboard */,
 				63F31B89251C8CED00777BDE /* blueblack.jpg */,
 				636F81BD251ED9E100B35A1E /* Images.xcassets */,
 				63F31B72251C536700777BDE /* LaunchScreen.storyboard */,
+				632CE5912526DE2E00D073AC /* GoogleService-Info.plist */,
 				63F31B75251C536700777BDE /* Info.plist */,
 			);
 			path = "Pet App";
@@ -151,6 +165,7 @@
 			packageProductDependencies = (
 				6352191F251E681F00A4E876 /* AnimatedCollectionViewLayout */,
 				635339AB2520B946001FDFAD /* SnapKit */,
+				635B92A52529BC170029A180 /* IQKeyboardManagerSwift */,
 			);
 			productName = "Pet App";
 			productReference = 63F31B64251C536500777BDE /* Pet App.app */;
@@ -182,6 +197,7 @@
 			packageReferences = (
 				6352191E251E681F00A4E876 /* XCRemoteSwiftPackageReference "AnimatedCollectionViewLayout" */,
 				635339AA2520B946001FDFAD /* XCRemoteSwiftPackageReference "SnapKit" */,
+				635B92A42529BC170029A180 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 63F31B65251C536500777BDE /* Products */;
 			projectDirPath = "";
@@ -199,6 +215,7 @@
 			files = (
 				636F81C8251EE05400B35A1E /* Woodhouse'S Toad - 397.mp4 in Resources */,
 				636F81C7251EE05400B35A1E /* Cat - 2879.mp4 in Resources */,
+				632CE5922526DE2E00D073AC /* GoogleService-Info.plist in Resources */,
 				63F31B74251C536700777BDE /* LaunchScreen.storyboard in Resources */,
 				636F81C5251EE05400B35A1E /* Dog - 15305.mp4 in Resources */,
 				636F81BE251ED9E100B35A1E /* Images.xcassets in Resources */,
@@ -258,9 +275,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				63F31B6C251C536500777BDE /* ViewController.swift in Sources */,
+				632CE5A72527146D00D073AC /* UserViewController.swift in Sources */,
 				635339A72520579A001FDFAD /* UploadViewController.swift in Sources */,
 				63EAD09525229C7100F405FC /* MovieCropper.swift in Sources */,
 				63F31B68251C536500777BDE /* AppDelegate.swift in Sources */,
+				6320C3C1252C5656005A417A /* Contents.swift in Sources */,
+				632CE5FD2529656A00D073AC /* StartViewController.swift in Sources */,
 				635339A325203150001FDFAD /* RecordViewController.swift in Sources */,
 				63F31B6A251C536500777BDE /* SceneDelegate.swift in Sources */,
 				63F31B86251C877000777BDE /* HomeViewController.swift in Sources */,
@@ -485,6 +505,14 @@
 				minimumVersion = 5.0.1;
 			};
 		};
+		635B92A42529BC170029A180 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.6;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -497,6 +525,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 635339AA2520B946001FDFAD /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		635B92A52529BC170029A180 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 635B92A42529BC170029A180 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
