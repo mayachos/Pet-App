@@ -10,12 +10,14 @@ import AVFoundation
 import MediaPlayer
 import AVKit
 import Firebase
+import FirebaseFirestore
 
 class UploadViewController: UIViewController {
     
     let refDatabase = Database.database().reference()
     let storage = Storage.storage()
     let user = Auth.auth().currentUser
+    let db = Firestore.firestore()
     let userDefaults = UserDefaults.standard
     
     var setUrl: URL!
@@ -59,10 +61,10 @@ class UploadViewController: UIViewController {
     @IBAction func uploadButton() {
         if let user = user {
             let storageRef = storage.reference(forURL: "gs://pet-app-8ad40.appspot.com")
-            let timeLineDB = refDatabase.child("timeline")
-            let key = timeLineDB.child("video").childByAutoId().key
+            let timeLineDB = refDatabase.child("timeline").childByAutoId()
+            let key = timeLineDB.childByAutoId().key
             
-            let movieRef = storageRef.child("video").child(String(describing: key!) + ".mp4")
+            let movieRef = storageRef.child(String(describing: key!) + ".mp4")
             
             let uploadTask = movieRef.putFile(from: url, metadata: nil) { metadata, error in
                 guard let metadata = metadata else {
@@ -81,7 +83,21 @@ class UploadViewController: UIViewController {
                                     //"transfer" : ,
                                     "postDate" : ServerValue.timestamp()] as [String : Any]
                         //databaseに送信
-                        timeLineDB.updateChildValues(post)
+                        timeLineDB.setValue(post)
+                        
+//                        var ref: DocumentReference? = nil
+//                        ref = self.db.collection("timeline").addDocument(data: [
+//                            "uid" : user.uid,
+//                            "userName" : user.displayName as Any,
+//                            "videoURL" : [url!.absoluteURL],
+//                            "postDate" : ServerValue.timestamp()
+//                        ]) { err in
+//                            if let err = err {
+//                                print("Error adding document: \(err)")
+//                            } else {
+//                                print("Document added with ID: \(ref!.documentID)")
+//                            }
+//                        }
                     }
                     guard let downloadURL = url else {
                         //error

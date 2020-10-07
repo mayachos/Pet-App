@@ -13,8 +13,10 @@ import AVKit
 import Firebase
 
 class HomeViewController: UIViewController, UICollectionViewDelegate,  UICollectionViewDataSource {
-    //var ref = Database.database().reference()
     let storage = Storage.storage()
+    let ref = Database.database().reference()
+    var snap: DataSnapshot!
+    var loadTimer: Timer?
     
     //let userDefaults = UserDefaults.standard
     
@@ -25,8 +27,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,  UICollect
     
     var player: AVPlayer?
     
+   //let dispatchQueue = DispatchQueue()
     var pageCount = 10
-    var contentsArray = [Contents]()
+    var contentsArray = [DataSnapshot]()
     var color: [UIColor] = [.red, .yellow, .green, .blue, .purple, .systemIndigo, .cyan ]
     
     //var playerController = AVPlayerLayer()
@@ -36,23 +39,26 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,  UICollect
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let storageRef = storage.reference(forURL: "gs://pet-app-8ad40.appspot.com")
-        //ref = Database.database().reference()
+        //let storageRef = storage.reference(forURL: "gs://pet-app-8ad40.appspot.com")
         self.fetchContentsData()
         collectionView.delegate = self
         collectionView.dataSource = self
         self.layoutCollection()
-        let fileName = "Dog - 14869"
-        let fileExtension = "mp4"
-        let sampleUrl = Bundle.main.url(forResource: fileName, withExtension: fileExtension)!
-        //player = AVPlayer(url: sampleUrl)
+//        if let url = URL(string: "https://firebasestorage.googleapis.com/v0/b/pet-app-8ad40.appspot.com/o/video.mp4"){
+//
+//            let asset = AVAsset(url: url)
+//            let playerItem = AVPlayerItem(asset: asset)
+//            let player = AVPlayer(playerItem: playerItem)
+//            player.play()
+//        }
     }
     override func viewWillAppear(_ animated: Bool) {
         if Auth.auth().currentUser == nil {
             let storyboard: UIStoryboard = self.storyboard!
             let nextVC = storyboard.instantiateViewController(withIdentifier: "StartViewController") as! StartViewController
             self.present(nextVC, animated: true, completion: nil)
-        } 
+        }
+
     }
     
     func layoutCollection() {
@@ -68,23 +74,36 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,  UICollect
     
     //セクションごとのセル数
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //実際のセル数の3倍用意
-        return isInfinity ? pageCount * 3 : pageCount
+        pageCount = contentsArray.count
+        return pageCount
     }
     //セルの設定
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        let fixedIndex = isInfinity ? indexPath.row % pageCount : indexPath.row
-        //let url = contentsArray[fixedIndex].videoString
-       // player = AVPlayer(url: URL(string: url)!)
+        if snap != nil {
+            let item = contentsArray[indexPath.row]
+            let content = item.value as! Dictionary<String, Any>
+            
+            let url = String(describing: content["videoURL"]!)
+            player = AVPlayer(url: URL(fileURLWithPath: url))
+            print(url)
+            let uName = String(describing: content["author"]!)
+            userName.text = uName
+            
+        } else {
+            let fileName = "Dog - 14869"
+            let fileExtension = "mp4"
+            let sampleUrl = Bundle.main.url(forResource: fileName, withExtension: fileExtension)!
+            player = AVPlayer(url: sampleUrl)
+        }
         
         let moviePlayerLayer = AVPlayerLayer()
         moviePlayerLayer.player = player
         moviePlayerLayer.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.width)
         moviePlayerLayer.videoGravity = .resizeAspectFill
         cell.layer.insertSublayer(moviePlayerLayer, at: 0)
-        player?.play()
         //cell.backgroundColor = color[fixedIndex]
+        
         return cell
     }
     
@@ -92,35 +111,56 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,  UICollect
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         //carouselView.scrollToFirstItem()
+        self.collectionView.reloadData()
     }
     
     
     func fetchContentsData() {
-        print(DataEventType.value)
         //child以降は新しい順に並べ替え
-        let ref = Database.database().reference().child("timeline").queryLimited(toLast: 10).queryOrdered(byChild: "postDate").observe(.value){ (snapShot) in
-            //この前で止まる
-            self.contentsArray.removeAll()
-            if let snapShot = snapShot.children.allObjects as? [DataSnapshot] {
-                for snap in snapShot {
-                    if let postData = snap.value as? [String:Any] {
-                        let userID = postData["uid"]
-                        let userName = postData["author"] as? String
-                        //let userImage = postData["profileImage"] as? String
-                        let url = postData["videoURL"] as? String
-                        //let transfer = postData["transfer"] as? Bool
-                        var postDate: CLong?
-                        if let postedDate = postData["postDate"] as? CLong {
-                            postDate = postedDate
-                        }
-                        let timeString = self.convertTimeStamp(serverTimeStamp: postDate!)
-                        self.contentsArray.append(Contents(userNameString: userName!, videoString: url!, postDateString: timeString))
-//                        self.contentsArray.append(Contents(userNameString: userName!, profileImageString: userImage!, videoString: url!, postDateString: timeStringTransfer: transfer!))
-                    }
-                }
-                self.collectionView.reloadData()
-            }
+        DispatchQueue.global(qos: .userInitiated).async { [self] in
+            
+            ref.child("timeline").observe(.value, with: { (snapShot) in
+                //この前で止まる
+                dump(snapShot)
+                //if snapShot.children.allObjects is DataSnapshot {
+                print("snapShots.children...\(snapShot.childrenCount)") //いくつのデータがあるかプリント
+                
+                print("snapShot...\(snapShot)") //読み込んだデータをプリント
+                
+                self.snap = snapShot
+                //}
+                self.reload()
+            })
         }
+    }
+    
+    func reload() {
+        if snap != nil {
+            print(snap)
+            self.contentsArray.removeAll()
+            for item in snap.children {
+                    //if let postData = item.value as? [String:Any] {
+//                        let userID = postData["uid"]
+//                        let userName = postData["author"] as? String
+//                        //let userImage = postData["profileImage"] as? String
+//                        let url = postData["videoURL"] as? String
+//                        //let transfer = postData["transfer"] as? Bool
+//                        var postDate: CLong?
+//                        if let postedDate = postData["postDate"] as? CLong {
+//                            postDate = postedDate
+//                        }
+//                        let timeString = self.convertTimeStamp(serverTimeStamp: postDate!)
+//                        self.contentsArray.append(Contents(userNameString: userName!, videoURL: url!, postDateString: timeString))
+                contentsArray.append(item as! DataSnapshot)
+                print(item)
+            }
+            ref.child("timeline").keepSynced(true)
+            //self.collectionView.reloadData()
+            //                        self.contentsArray.append(Contents(userNameString: userName!, profileImageString: userImage!, videoString: url!, postDateString: timeStringTransfer: transfer!))
+        }
+    }
+    @IBAction func playButton() {
+        player!.play()
     }
 
     func convertTimeStamp(serverTimeStamp: CLong) -> String {

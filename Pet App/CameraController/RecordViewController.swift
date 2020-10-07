@@ -19,6 +19,7 @@ class RecordViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     var videoTimer: Timer?
     var loadTimer: Timer?
     var sendUrl: URL!
+    let dispatchGroup = DispatchGroup()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,6 +107,13 @@ class RecordViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
         let croppedMovieFileURL: URL = outputFileURL
         
+        saveMovie(dispatchGroup, outputFileURL: outputFileURL, croppedMovieFileURL: croppedMovieFileURL)
+        dispatchGroup.notify(queue: .main) { [self] in
+            toUploadView(self)
+        }
+        //self.loadTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.toUploadView(_:)), userInfo: nil, repeats: false)
+    }
+    func saveMovie(_ dispatchGroup: DispatchGroup, outputFileURL: URL, croppedMovieFileURL: URL) {
         //録画した動画を正方形にクロッピング
         MovieCropper.exportSquareMovie(sourceURL: outputFileURL, destinationURL: croppedMovieFileURL, fileType: .mov, completion: {
         //ライブラリへ保存
@@ -118,10 +126,9 @@ class RecordViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             }
         })
         sendUrl = outputFileURL
-        self.loadTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.toUploadView(_:)), userInfo: nil, repeats: false)
     }
     
-    @objc func toUploadView(_ sender: Any) {
+    func toUploadView(_ sender: Any) {
         let storyboard: UIStoryboard = self.storyboard!
         let nextVC = storyboard.instantiateViewController(identifier: "upload") as! UploadViewController
         print(sendUrl as Any)

@@ -9,12 +9,13 @@ import UIKit
 import AVFoundation
 import Firebase
 import IQKeyboardManagerSwift
+import FirebaseFirestore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         // Override point for customization after application launch.
         let audioSession = AVAudioSession.sharedInstance()
@@ -24,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Setting category to AVAudioSessionCategoryPlayback faild.")
         }
         FirebaseApp.configure()
+        let db = Firestore.firestore()
         IQKeyboardManager.shared.enable = true
         return true
     }

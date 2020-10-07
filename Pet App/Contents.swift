@@ -10,14 +10,14 @@ import Foundation
 class Contents {
     var userNameString: String = ""
     //var profileImageString: String = ""
-    var videoString: String = ""
+    var videoURL: String = ""
     var postDateString: String = ""
     //var Transfer: Bool = false
     
-    init (userNameString: String,videoString: String,postDateString: String){
+    init (userNameString: String,videoURL: String,postDateString: String){
         self.userNameString = userNameString
         //self.profileImageString = profileImageString
-        self.videoString = videoString
+        self.videoURL = videoURL
         self.postDateString = postDateString
         //self.Transfer = Transfer
     }
