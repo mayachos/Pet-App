@@ -24,9 +24,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,  UICollect
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var profileImageView: UIImageView!
     @IBOutlet var userName: UILabel!
+    @IBOutlet var goodButton: UIButton!
     
     var player: AVPlayer?
     let moviePlayerLayer = AVPlayerLayer()
+    var adopt = false
     
     var pageCount = 10
     var contentsArray = [DataSnapshot]()
@@ -82,7 +84,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,  UICollect
             print(URL(string: url)!)
             let uName = String(describing: content["author"]!)
             userName.text = uName
-            
+            if content["adopt"] != nil {
+                adopt = content["adopt"] as! Bool
+            }
         } else {
             let fileName = "Dog - 14869"
             let fileExtension = "mp4"
@@ -118,9 +122,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,  UICollect
     
     
     func fetchContentsData() {
-        //child以降は新しい順に並べ替え
+        
         DispatchQueue.global(qos: .userInitiated).async { [self] in
-            
+            //child以降は新しい順に並べ替え
             ref.child("timeline").observe(.value, with: { (snapShot) in
                 
                 dump(snapShot)
@@ -159,6 +163,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,  UICollect
         return formatter.string(from: date)
     }
 
+    @IBAction func goodTapButton() {
+        
+    }
     /*
     // MARK: - Navigation
 

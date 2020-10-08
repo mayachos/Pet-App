@@ -15,6 +15,8 @@ class StartViewController: UIViewController {
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
+    
+    var userDefaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +50,15 @@ class StartViewController: UIViewController {
                             if error == nil {
                                 self.displayMyAlertMessage(userMessage: "登録が完了しました")
                                 //仮登録画面処理に遷移
+                                
+                                let ref = Database.database().reference()
+                                let userDB = ref.child("user").child(user.uid)
+                                let post = ["user" : user.displayName as Any,
+                                            "adopt" : false,
+                                            "area": "",
+                                            "address": ""] as [String : Any]
+                                userDB.setValue(post)
+                                self.userDefaults.set(false, forKey: "adopt")
                                 self.dismiss(animated: true, completion: nil)
                             }
                             self.showErrorIfNeeded(error)
@@ -58,6 +69,7 @@ class StartViewController: UIViewController {
             }
             self.showErrorIfNeeded(error)
         }
+        
     }
     
     private func showErrorIfNeeded(_ errorOnNil: Error?) {
@@ -71,14 +83,7 @@ class StartViewController: UIViewController {
     }
     
     
-    func displayMyAlertMessage(userMessage: String){
-
-        let myAlert = UIAlertController(title:"Alert", message: userMessage, preferredStyle:  UIAlertController.Style.alert)
-        let okAction = UIAlertAction(title:"OK", style: UIAlertAction.Style.default, handler:nil)
-            myAlert.addAction(okAction);
-            self.present(myAlert,animated:true, completion:nil)
-
-    }
+ 
 
     private func errorMessage(of error: Error) -> String {
         var message = "エラーが発生しました"
@@ -111,3 +116,13 @@ class StartViewController: UIViewController {
     */
 
 }
+extension UIViewController {
+    func displayMyAlertMessage(userMessage: String){
+        
+        let myAlert = UIAlertController(title:"Alert", message: userMessage, preferredStyle:  UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title:"OK", style: UIAlertAction.Style.default, handler:nil)
+        myAlert.addAction(okAction)
+        self.present(myAlert, animated:true, completion:nil)
+    }
+}
+

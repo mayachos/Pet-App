@@ -17,7 +17,9 @@ class UploadViewController: UIViewController {
     let refDatabase = Database.database().reference()
     let storage = Storage.storage()
     let user = Auth.auth().currentUser
+    var userDefaults = UserDefaults.standard
     //let userDefaults = UserDefaults.standard
+    @IBOutlet var uploadB: UIButton!
     
     var setUrl: URL!
     var url: URL!
@@ -26,6 +28,7 @@ class UploadViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        uploadB.layer.cornerRadius = 10
         print(setUrl!)
         url = setUrl!
     }
@@ -61,9 +64,10 @@ class UploadViewController: UIViewController {
         if let user = user {
             let storageRef = storage.reference(forURL: "gs://pet-app-8ad40.appspot.com")
             let timeLineDB = refDatabase.child("timeline").childByAutoId()
-            let key = timeLineDB.childByAutoId().key
+            guard let key = timeLineDB.childByAutoId().key else { return }
+            let adopt = userDefaults.bool(forKey: "adopt")
             
-            let movieRef = storageRef.child(String(describing: key!) + ".mp4")
+            let movieRef = storageRef.child(String(describing: key) + ".mp4")
             
             let uploadTask = movieRef.putFile(from: url, metadata: nil) { metadata, error in
                 guard let metadata = metadata else {
@@ -71,18 +75,22 @@ class UploadViewController: UIViewController {
                     print("Uh-oh, an error occurred!")
                     return
                 }
-                let size  = metadata.size
+                let size = metadata.size
                 movieRef.downloadURL{ (url, error) in
                     
                     if url != nil {
-                        let post = ["uid" : user.uid,
+                        let postT = ["uid" : user.uid,
                                     "author" : user.displayName as Any,
                                     //"profileImage" : user.photoURL as Any,
                                     "videoURL" : url!.absoluteString as Any,
-                                    //"transfer" : ,
+                                    "adopt" : adopt,
                                     "postDate" : ServerValue.timestamp()] as [String : Any]
+                        let postU = ["videoURL" : url!.absoluteString as Any,
+                                     "postDate" : ServerValue.timestamp()]
+                        let childUpDates = ["/timeline/\(key)" : postT,
+                                            "/user/\(user.uid)/video/\(key)" : postU]
                         //databaseに送信
-                        timeLineDB.setValue(post)
+                        self.refDatabase.updateChildValues(childUpDates)
                     }
                     guard let downloadURL = url else {
                         //error
@@ -92,11 +100,10 @@ class UploadViewController: UIViewController {
                 }
             }
             uploadTask.resume()
+            dismiss(animated: true, completion: nil)
         }
-        dismiss(animated: true, completion: nil)
     }
     
-
     /*
     // MARK: - Navigation
 
