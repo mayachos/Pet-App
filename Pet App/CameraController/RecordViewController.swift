@@ -107,21 +107,21 @@ class RecordViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
         let croppedMovieFileURL: URL = outputFileURL
         
-        saveMovie(dispatchGroup, outputFileURL: outputFileURL, croppedMovieFileURL: croppedMovieFileURL)
-        dispatchGroup.notify(queue: .main) { [self] in
+            saveMovie(outputFileURL: outputFileURL, croppedMovieFileURL: croppedMovieFileURL)
+        
             toUploadView(self)
-        }
-        //self.loadTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.toUploadView(_:)), userInfo: nil, repeats: false)
     }
-    func saveMovie(_ dispatchGroup: DispatchGroup, outputFileURL: URL, croppedMovieFileURL: URL) {
+    func saveMovie(outputFileURL: URL, croppedMovieFileURL: URL) {
         //録画した動画を正方形にクロッピング
         MovieCropper.exportSquareMovie(sourceURL: outputFileURL, destinationURL: croppedMovieFileURL, fileType: .mov, completion: {
-        //ライブラリへ保存
-            PHPhotoLibrary.shared().performChanges({PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputFileURL)
-            }) {
-                completed, error in
-                if completed {
-                    print("Video is saved!")
+            DispatchQueue.global(qos: .userInitiated).async { [self] in
+                //ライブラリへ保存
+                PHPhotoLibrary.shared().performChanges({PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputFileURL)
+                }) {
+                    completed, error in
+                    if completed {
+                        print("Video is saved!")
+                    }
                 }
             }
         })

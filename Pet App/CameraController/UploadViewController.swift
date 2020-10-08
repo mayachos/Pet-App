@@ -17,8 +17,7 @@ class UploadViewController: UIViewController {
     let refDatabase = Database.database().reference()
     let storage = Storage.storage()
     let user = Auth.auth().currentUser
-    let db = Firestore.firestore()
-    let userDefaults = UserDefaults.standard
+    //let userDefaults = UserDefaults.standard
     
     var setUrl: URL!
     var url: URL!
@@ -84,20 +83,6 @@ class UploadViewController: UIViewController {
                                     "postDate" : ServerValue.timestamp()] as [String : Any]
                         //databaseに送信
                         timeLineDB.setValue(post)
-                        
-//                        var ref: DocumentReference? = nil
-//                        ref = self.db.collection("timeline").addDocument(data: [
-//                            "uid" : user.uid,
-//                            "userName" : user.displayName as Any,
-//                            "videoURL" : [url!.absoluteURL],
-//                            "postDate" : ServerValue.timestamp()
-//                        ]) { err in
-//                            if let err = err {
-//                                print("Error adding document: \(err)")
-//                            } else {
-//                                print("Document added with ID: \(ref!.documentID)")
-//                            }
-//                        }
                     }
                     guard let downloadURL = url else {
                         //error

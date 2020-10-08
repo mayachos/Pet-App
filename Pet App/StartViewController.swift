@@ -18,7 +18,10 @@ class StartViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        passwordTextField.isSecureTextEntry = true
+        nameTextField.placeholder = "表示名"
+        emailTextField.placeholder = "メールアドレス"
+        passwordTextField.placeholder = "パスワード"
         // Do any additional setup after loading the view.
     }
     

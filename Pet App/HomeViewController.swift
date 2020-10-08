@@ -26,39 +26,24 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,  UICollect
     @IBOutlet var userName: UILabel!
     
     var player: AVPlayer?
+    let moviePlayerLayer = AVPlayerLayer()
     
-   //let dispatchQueue = DispatchQueue()
     var pageCount = 10
     var contentsArray = [DataSnapshot]()
     var color: [UIColor] = [.red, .yellow, .green, .blue, .purple, .systemIndigo, .cyan ]
-    
-    //var playerController = AVPlayerLayer()
-    //var player = AVPlayer()
+
     private var observers: (NSObjectProtocol)?
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //let storageRef = storage.reference(forURL: "gs://pet-app-8ad40.appspot.com")
         self.fetchContentsData()
         collectionView.delegate = self
         collectionView.dataSource = self
-        self.layoutCollection()
-//        if let url = URL(string: "https://firebasestorage.googleapis.com/v0/b/pet-app-8ad40.appspot.com/o/video.mp4"){
-//
-//            let asset = AVAsset(url: url)
-//            let playerItem = AVPlayerItem(asset: asset)
-//            let player = AVPlayer(playerItem: playerItem)
-//            player.play()
-//        }
+
     }
     override func viewWillAppear(_ animated: Bool) {
-        if Auth.auth().currentUser == nil {
-            let storyboard: UIStoryboard = self.storyboard!
-            let nextVC = storyboard.instantiateViewController(withIdentifier: "StartViewController") as! StartViewController
-            self.present(nextVC, animated: true, completion: nil)
-        }
-
+        self.layoutCollection()
     }
     
     func layoutCollection() {
@@ -81,12 +66,20 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,  UICollect
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         if snap != nil {
+            if indexPath.row != 0 {
+                let preitem = contentsArray[indexPath.row-1]
+                let precontent = preitem.value as! Dictionary<String, Any>
+                let preurl = String(describing: precontent["videoURL"]!)
+                player?.pause()
+                player = nil
+                print(URL(string: preurl)!)
+            }
             let item = contentsArray[indexPath.row]
             let content = item.value as! Dictionary<String, Any>
-            
+
             let url = String(describing: content["videoURL"]!)
-            player = AVPlayer(url: URL(fileURLWithPath: url))
-            print(url)
+            player = AVPlayer(url: URL(string: url)!)
+            print(URL(string: url)!)
             let uName = String(describing: content["author"]!)
             userName.text = uName
             
@@ -96,22 +89,31 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,  UICollect
             let sampleUrl = Bundle.main.url(forResource: fileName, withExtension: fileExtension)!
             player = AVPlayer(url: sampleUrl)
         }
-        
-        let moviePlayerLayer = AVPlayerLayer()
         moviePlayerLayer.player = player
+        self.playerLayer()
+        cell.layer.insertSublayer(moviePlayerLayer, at: 0)
+        //cell.backgroundColor = color[indexPath.row]
+        player!.play()
+        return cell
+    }
+    
+    func playerLayer() {
         moviePlayerLayer.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.width)
         moviePlayerLayer.videoGravity = .resizeAspectFill
-        cell.layer.insertSublayer(moviePlayerLayer, at: 0)
-        //cell.backgroundColor = color[fixedIndex]
-        
-        return cell
+        if moviePlayerLayer.position != CGPoint(x: 0, y: 0) {
+            player?.pause()
+        }
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        if Auth.auth().currentUser == nil {
+            let storyboard: UIStoryboard = self.storyboard!
+            let nextVC = storyboard.instantiateViewController(withIdentifier: "StartViewController") as! StartViewController
+            self.present(nextVC, animated: true, completion: nil)
+        }
         //carouselView.scrollToFirstItem()
-        self.collectionView.reloadData()
     }
     
     
@@ -120,7 +122,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,  UICollect
         DispatchQueue.global(qos: .userInitiated).async { [self] in
             
             ref.child("timeline").observe(.value, with: { (snapShot) in
-                //この前で止まる
+                
                 dump(snapShot)
                 //if snapShot.children.allObjects is DataSnapshot {
                 print("snapShots.children...\(snapShot.childrenCount)") //いくつのデータがあるかプリント
@@ -136,33 +138,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,  UICollect
     
     func reload() {
         if snap != nil {
-            print(snap)
+            print(snap!)
             self.contentsArray.removeAll()
             for item in snap.children {
-                    //if let postData = item.value as? [String:Any] {
-//                        let userID = postData["uid"]
-//                        let userName = postData["author"] as? String
-//                        //let userImage = postData["profileImage"] as? String
-//                        let url = postData["videoURL"] as? String
-//                        //let transfer = postData["transfer"] as? Bool
-//                        var postDate: CLong?
-//                        if let postedDate = postData["postDate"] as? CLong {
-//                            postDate = postedDate
-//                        }
-//                        let timeString = self.convertTimeStamp(serverTimeStamp: postDate!)
-//                        self.contentsArray.append(Contents(userNameString: userName!, videoURL: url!, postDateString: timeString))
                 contentsArray.append(item as! DataSnapshot)
                 print(item)
             }
             ref.child("timeline").keepSynced(true)
-            //self.collectionView.reloadData()
-            //                        self.contentsArray.append(Contents(userNameString: userName!, profileImageString: userImage!, videoString: url!, postDateString: timeStringTransfer: transfer!))
         }
+        self.collectionView.reloadData()
     }
-    @IBAction func playButton() {
-        player!.play()
-    }
-
+    
     func convertTimeStamp(serverTimeStamp: CLong) -> String {
         let x = serverTimeStamp / 1000
         let date = Date(timeIntervalSince1970: TimeInterval(x))

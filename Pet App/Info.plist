@@ -67,6 +67,16 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>rounded-mplus-2p-black.ttf</string>
+		<string>rounded-mplus-2p-regular.ttf</string>
+		<string>rounded-mplus-2p-medium.ttf</string>
+		<string>rounded-mplus-2p-heavy.ttf</string>
+		<string>rounded-mplus-2p-bold.ttf</string>
+		<string>rounded-mplus-2p-thin.ttf</string>
+		<string>rounded-mplus-2p-light.ttf</string>
+	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

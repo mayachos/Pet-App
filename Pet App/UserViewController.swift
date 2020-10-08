@@ -12,6 +12,9 @@ class UserViewController: UIViewController {
     var ref: DatabaseReference!
     
     let user = Auth.auth().currentUser
+    @IBOutlet var nameTextField: UITextField!
+    @IBOutlet var profileImage: UIImageView!
+    @IBOutlet var heartImage: UIImageView!
     
     
     override func viewDidLoad() {
@@ -31,6 +34,7 @@ class UserViewController: UIViewController {
 //          }
             
         }
+        
     }
     
     @IBAction func logOutButton() {

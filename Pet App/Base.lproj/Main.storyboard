@@ -4,12 +4,22 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="rounded-mplus-2p-bold.ttf">
+            <string>rounded-mplus-2p-bold</string>
+        </array>
+        <array key="rounded-mplus-2p-heavy.ttf">
+            <string>rounded-mplus-2p-heavy</string>
+        </array>
+        <array key="rounded-mplus-2p-medium.ttf">
+            <string>rounded-mplus-2p-medium</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--Item-->
+        <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="Pet_App" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,7 +29,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xn1-Rg-zFC">
                                 <rect key="frame" x="0.0" y="89" width="414" height="414"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.36433911320000001" green="0.33384472129999998" blue="0.30195605749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="xn1-Rg-zFC" secondAttribute="height" multiplier="1:1" id="Zt1-i3-TxO"/>
                                 </constraints>
@@ -37,6 +47,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
+                                        <color key="backgroundColor" red="0.36433911320000001" green="0.33384472129999998" blue="0.30195605749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -44,40 +55,32 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="o9a-Ge-9vn"/>
                                 </connections>
                             </collectionView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ORY-WW-PVh">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="user.png" translatesAutoresizingMaskIntoConstraints="NO" id="ORY-WW-PVh">
                                 <rect key="frame" x="20" y="584" width="95" height="95"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rli-5U-pJ7">
-                                <rect key="frame" x="123" y="607" width="168" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ss-AF-DlC">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ss-AF-DlC">
                                 <rect key="frame" x="299" y="584" width="95" height="95"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="いいね"/>
+                                <state key="normal" image="empty_heart.png"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3RP-YA-Aog">
-                                <rect key="frame" x="192" y="709" width="30" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rli-5U-pJ7">
+                                <rect key="frame" x="123" y="604" width="168" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Play"/>
-                                <connections>
-                                    <action selector="playButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="zDL-Wx-Xzv"/>
-                                </connections>
-                            </button>
+                                <fontDescription key="fontDescription" name="rounded-mplus-2p-heavy" family="Rounded M+ 2p" pointSize="27"/>
+                                <color key="textColor" red="0.36433911320000001" green="0.33384472129999998" blue="0.30195605749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.93556517360000002" green="0.90988117459999995" blue="0.82860934730000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.99914258720000004" green="0.86293488740000002" blue="0.854899466" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="xn1-Rg-zFC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3lI-zA-b0R"/>
                             <constraint firstItem="xn1-Rg-zFC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="45" id="Feb-eU-PDN"/>
                             <constraint firstItem="xn1-Rg-zFC" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="wrb-Yx-9bQ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Gow-gZ-F6g"/>
+                    <tabBarItem key="tabBarItem" title="" id="Gow-gZ-F6g"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="xn1-Rg-zFC" id="7Wk-vC-ijl"/>
@@ -89,7 +92,7 @@
             </objects>
             <point key="canvasLocation" x="-1340.5797101449277" y="557.8125"/>
         </scene>
-        <!--Item-->
+        <!--View Controller-->
         <scene sceneID="kGm-qY-NAL">
             <objects>
                 <viewController id="nir-SM-nwH" sceneMemberID="viewController">
@@ -97,15 +100,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="0f7-xo-sOv"/>
-                        <color key="backgroundColor" red="0.93556517360000002" green="0.90988117459999995" blue="0.82860934730000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.99914258720000004" green="0.86293488740000002" blue="0.854899466" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="G8j-Jj-B3L"/>
+                    <tabBarItem key="tabBarItem" title="" id="G8j-Jj-B3L"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="frb-vx-tau" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-700" y="560"/>
         </scene>
-        <!--Item-->
+        <!--Record View Controller-->
         <scene sceneID="JXD-fs-Fym">
             <objects>
                 <viewController id="fWt-cy-fYS" customClass="RecordViewController" customModule="Pet_App" customModuleProvider="target" sceneMemberID="viewController">
@@ -113,9 +116,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="c1a-iP-HG4"/>
-                        <color key="backgroundColor" red="0.93556517360000002" green="0.90988117459999995" blue="0.82860934730000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.99914258720000004" green="0.86293488740000002" blue="0.854899466" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="ypf-cN-R7z"/>
+                    <tabBarItem key="tabBarItem" title="" id="ypf-cN-R7z"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q6t-xH-BVf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -130,11 +133,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TBY-lp-xep">
-                                <rect key="frame" x="138" y="779" width="138" height="53"/>
+                                <rect key="frame" x="167" y="772" width="80" height="60"/>
                                 <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <state key="normal" title="投稿する">
-                                    <color key="titleColor" red="0.93556517360000002" green="0.90988117459999995" blue="0.82860934730000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="NBh-mi-MEh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="rounded-mplus-2p-heavy" family="Rounded M+ 2p" pointSize="34"/>
+                                <state key="normal" title="投稿">
+                                    <color key="titleColor" red="0.99914258720000004" green="0.86293488740000002" blue="0.854899466" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
                                     <action selector="uploadButton" destination="wPo-zH-dyf" eventType="touchUpInside" id="Nbs-Gb-Qju"/>
@@ -142,7 +148,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="f3U-j6-bsD"/>
-                        <color key="backgroundColor" red="0.93556517360000002" green="0.90988117459999995" blue="0.82860934730000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.99914258720000004" green="0.86293488740000002" blue="0.854899466" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="TBY-lp-xep" firstAttribute="centerX" secondItem="dHI-H0-gAV" secondAttribute="centerX" id="8fF-IR-P9B"/>
                             <constraint firstItem="f3U-j6-bsD" firstAttribute="bottom" secondItem="TBY-lp-xep" secondAttribute="bottom" constant="30" id="wYY-5f-Svp"/>
@@ -153,7 +159,7 @@
             </objects>
             <point key="canvasLocation" x="-60" y="1231.9340329835084"/>
         </scene>
-        <!--Item-->
+        <!--View Controller-->
         <scene sceneID="N5L-pV-DFg">
             <objects>
                 <viewController id="zmH-FL-YMU" sceneMemberID="viewController">
@@ -161,15 +167,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="paZ-kK-IoC"/>
-                        <color key="backgroundColor" red="0.93556517360000002" green="0.90988117459999995" blue="0.82860934730000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.99914258720000004" green="0.86293488740000002" blue="0.854899466" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="MFG-fS-ty6"/>
+                    <tabBarItem key="tabBarItem" title="" id="MFG-fS-ty6"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5St-Xq-jGl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="601" y="560"/>
         </scene>
-        <!--Item-->
+        <!--User View Controller-->
         <scene sceneID="ssV-iE-sU7">
             <objects>
                 <viewController id="p5b-gu-ZHE" customClass="UserViewController" customModule="Pet_App" customModuleProvider="target" sceneMemberID="viewController">
@@ -177,22 +183,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ime-8j-bJg">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="user.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ime-8j-bJg">
                                 <rect key="frame" x="132" y="74" width="150" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsY-Hq-PoG">
-                                <rect key="frame" x="158" y="232" width="99" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="地域" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBP-42-GSl">
                                 <rect key="frame" x="20" y="483" width="49" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="rounded-mplus-2p-medium" family="Rounded M+ 2p" pointSize="24"/>
+                                <color key="textColor" red="0.36433911320000001" green="0.33384472129999998" blue="0.30195605749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gZH-0s-9FD">
@@ -200,52 +199,65 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="連絡先" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tml-PP-UWQ">
-                                <rect key="frame" x="20" y="596" width="73" height="29"/>
+                                <rect key="frame" x="20" y="596" width="72" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="rounded-mplus-2p-medium" family="Rounded M+ 2p" pointSize="24"/>
+                                <color key="textColor" red="0.36433911320000001" green="0.33384472129999998" blue="0.30195605749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3eX-Rf-Lyj">
-                                <rect key="frame" x="183" y="704" width="49" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="保存"/>
-                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y4W-UJ-v2g">
                                 <rect key="frame" x="183" y="591" width="194" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zw6-9W-r2R">
-                                <rect key="frame" x="318" y="44" width="77" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="ログアウト"/>
-                                <connections>
-                                    <action selector="logOutButton" destination="p5b-gu-ZHE" eventType="touchUpInside" id="psB-JS-H3H"/>
-                                </connections>
-                            </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Hf-s8-CEC">
                                 <rect key="frame" x="328" y="360" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="譲渡したい動物がいる" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfO-Po-kCD">
-                                <rect key="frame" x="20" y="361" width="244" height="29"/>
+                                <rect key="frame" x="20" y="361" width="240" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="rounded-mplus-2p-medium" family="Rounded M+ 2p" pointSize="24"/>
+                                <color key="textColor" red="0.36433911320000001" green="0.33384472129999998" blue="0.30195605749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sud-1N-EcU">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="empty_heart.png" translatesAutoresizingMaskIntoConstraints="NO" id="Sud-1N-EcU">
                                 <rect key="frame" x="177" y="281" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3eX-Rf-Lyj">
+                                <rect key="frame" x="170" y="698" width="75" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="rounded-mplus-2p-bold" family="Rounded M+ 2p" pointSize="31"/>
+                                <state key="normal" title="保存">
+                                    <color key="titleColor" red="0.23856952789999999" green="0.4449964166" blue="0.7019898295" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zw6-9W-r2R">
+                                <rect key="frame" x="309" y="44" width="85" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="rounded-mplus-2p-heavy" family="Rounded M+ 2p" pointSize="17"/>
+                                <state key="normal" title="ログアウト">
+                                    <color key="titleColor" red="0.23856952789999999" green="0.4449964166" blue="0.7019898295" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="logOutButton" destination="p5b-gu-ZHE" eventType="touchUpInside" id="psB-JS-H3H"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R06-fn-1zz">
+                                <rect key="frame" x="155" y="239" width="105" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.99914258720000004" green="0.86293488740000002" blue="0.854899466" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="textColor" red="0.36433911320000001" green="0.33384472129999998" blue="0.30195605749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" name="rounded-mplus-2p-bold" family="Rounded M+ 2p" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9Hw-wy-GQm"/>
-                        <color key="backgroundColor" red="0.93556517360000002" green="0.90988117459999995" blue="0.82860934730000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.99914258720000004" green="0.86293488740000002" blue="0.854899466" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="PXl-2k-FvA"/>
+                    <tabBarItem key="tabBarItem" title="" id="PXl-2k-FvA"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KJK-R2-jZc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -259,14 +271,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2a6-Tb-q7d">
-                                <rect key="frame" x="184" y="559" width="46" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="signUpButton" destination="BOD-RQ-ZHk" eventType="touchUpInside" id="8nq-ZO-g3h"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Yj-4I-Vfw">
                                 <rect key="frame" x="93" y="178" width="229" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -286,29 +290,40 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUR-Kq-Qsx">
-                                <rect key="frame" x="164" y="129" width="87" height="41"/>
+                                <rect key="frame" x="164" y="129" width="95" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="rounded-mplus-2p-heavy" family="Rounded M+ 2p" pointSize="34"/>
+                                <color key="textColor" red="0.36433911320000001" green="0.33384472129999998" blue="0.30195605749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vt-Kk-vKO">
-                                <rect key="frame" x="167" y="250" width="80" height="41"/>
+                                <rect key="frame" x="163" y="250" width="94" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="rounded-mplus-2p-heavy" family="Rounded M+ 2p" pointSize="34"/>
+                                <color key="textColor" red="0.36433911320000001" green="0.33384472129999998" blue="0.30195605749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUJ-VN-WQg">
-                                <rect key="frame" x="137" y="382" width="141" height="41"/>
+                                <rect key="frame" x="126" y="375" width="163" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="rounded-mplus-2p-heavy" family="Rounded M+ 2p" pointSize="34"/>
+                                <color key="textColor" red="0.36433911320000001" green="0.33384472129999998" blue="0.30195605749999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2a6-Tb-q7d">
+                                <rect key="frame" x="132" y="556" width="151" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="rounded-mplus-2p-medium" family="Rounded M+ 2p" pointSize="34"/>
+                                <state key="normal" title="新規登録">
+                                    <color key="titleColor" red="0.23856952789999999" green="0.4449964166" blue="0.7019898295" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="signUpButton" destination="BOD-RQ-ZHk" eventType="touchUpInside" id="8nq-ZO-g3h"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="h1t-sd-SPl"/>
-                        <color key="backgroundColor" red="0.93556517360000002" green="0.90988117459999995" blue="0.82860934730000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.97576540710000004" green="0.86683946850000004" blue="0.8588215709" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="9Jl-hX-LFm" id="SSc-2q-KmZ"/>
@@ -328,19 +343,16 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zGc-i6-edi" customClass="SSCustomTabBar" customModule="SSCustomTabbar">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.89609354730000002" green="0.82388848069999998" blue="0.48228329419999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="layerFillColor">
-                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                 <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="unselectedTabTintColor">
-                                <color key="value" systemColor="systemIndigoColor"/>
-                            </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="waveHeight">
                                 <real key="value" value="25"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="layerFillColor">
+                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </tabBar>
@@ -358,11 +370,7 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemIndigoColor">
-            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <image name="empty_heart.png" width="126" height="116"/>
+        <image name="user.png" width="94" height="112"/>
     </resources>
 </document>
