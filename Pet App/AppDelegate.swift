@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Setting category to AVAudioSessionCategoryPlayback faild.")
         }
         FirebaseApp.configure()
-        let db = Firestore.firestore()
+       //let db = Firestore.firestore()
         IQKeyboardManager.shared.enable = true
         return true
     }

@@ -22,7 +22,9 @@
 		630EF2B4252E18FF002DEEF1 /* cat.png in Resources */ = {isa = PBXBuildFile; fileRef = 630EF2AD252E18FF002DEEF1 /* cat.png */; };
 		630EF2B5252E18FF002DEEF1 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 630EF2AE252E18FF002DEEF1 /* camera.png */; };
 		631374B5252E8A820011F916 /* screen1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 631374B4252E8A820011F916 /* screen1.mp4 */; };
-		6320C3C1252C5656005A417A /* Contents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6320C3C0252C5656005A417A /* Contents.swift */; };
+		6318E75625308FE800FBB91E /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6318E75525308FE800FBB91E /* extension.swift */; };
+		6318E7592530C62D00FBB91E /* GoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6318E7582530C62D00FBB91E /* GoodViewController.swift */; };
+		6318E75E2530C66800FBB91E /* PetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6318E75D2530C66800FBB91E /* PetViewController.swift */; };
 		632CE5922526DE2E00D073AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 632CE5912526DE2E00D073AC /* GoogleService-Info.plist */; };
 		632CE5A72527146D00D073AC /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632CE5A62527146D00D073AC /* UserViewController.swift */; };
 		632CE5FD2529656A00D073AC /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632CE5FC2529656A00D073AC /* StartViewController.swift */; };
@@ -31,12 +33,14 @@
 		635339A72520579A001FDFAD /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635339A62520579A001FDFAD /* UploadViewController.swift */; };
 		635339AC2520B946001FDFAD /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 635339AB2520B946001FDFAD /* SnapKit */; };
 		635B92A62529BC170029A180 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 635B92A52529BC170029A180 /* IQKeyboardManagerSwift */; };
+		636C765E25314682008F548C /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636C765D25314682008F548C /* CollectionViewCell.swift */; };
 		636F81BE251ED9E100B35A1E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 636F81BD251ED9E100B35A1E /* Images.xcassets */; };
 		636F81C5251EE05400B35A1E /* Dog - 15305.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 636F81C1251EE05300B35A1E /* Dog - 15305.mp4 */; };
 		636F81C6251EE05400B35A1E /* Dog - 14869.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 636F81C2251EE05300B35A1E /* Dog - 14869.mp4 */; };
 		636F81C7251EE05400B35A1E /* Cat - 2879.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 636F81C3251EE05400B35A1E /* Cat - 2879.mp4 */; };
 		636F81C8251EE05400B35A1E /* Woodhouse'S Toad - 397.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 636F81C4251EE05400B35A1E /* Woodhouse'S Toad - 397.mp4 */; };
-		63BEC7B8252F4ACC00CF6882 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BEC7B7252F4ACC00CF6882 /* PostViewController.swift */; };
+		63BEC7BC25303C0C00CF6882 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 63BEC7BB25303C0C00CF6882 /* NVActivityIndicatorView */; };
+		63BEC7BF2530466600CF6882 /* OtherUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BEC7BE2530466600CF6882 /* OtherUserViewController.swift */; };
 		63EAD09525229C7100F405FC /* MovieCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EAD09425229C7100F405FC /* MovieCropper.swift */; };
 		63F31B68251C536500777BDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F31B67251C536500777BDE /* AppDelegate.swift */; };
 		63F31B6A251C536500777BDE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F31B69251C536500777BDE /* SceneDelegate.swift */; };
@@ -64,18 +68,21 @@
 		630EF2AD252E18FF002DEEF1 /* cat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cat.png; sourceTree = "<group>"; };
 		630EF2AE252E18FF002DEEF1 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
 		631374B4252E8A820011F916 /* screen1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = screen1.mp4; sourceTree = "<group>"; };
-		6320C3C0252C5656005A417A /* Contents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contents.swift; sourceTree = "<group>"; };
+		6318E75525308FE800FBB91E /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
+		6318E7582530C62D00FBB91E /* GoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodViewController.swift; sourceTree = "<group>"; };
+		6318E75D2530C66800FBB91E /* PetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetViewController.swift; sourceTree = "<group>"; };
 		632CE5912526DE2E00D073AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		632CE5A62527146D00D073AC /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		632CE5FC2529656A00D073AC /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		635339A225203150001FDFAD /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		635339A62520579A001FDFAD /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
+		636C765D25314682008F548C /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		636F81BD251ED9E100B35A1E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		636F81C1251EE05300B35A1E /* Dog - 15305.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dog - 15305.mp4"; sourceTree = "<group>"; };
 		636F81C2251EE05300B35A1E /* Dog - 14869.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dog - 14869.mp4"; sourceTree = "<group>"; };
 		636F81C3251EE05400B35A1E /* Cat - 2879.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cat - 2879.mp4"; sourceTree = "<group>"; };
 		636F81C4251EE05400B35A1E /* Woodhouse'S Toad - 397.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Woodhouse'S Toad - 397.mp4"; sourceTree = "<group>"; };
-		63BEC7B7252F4ACC00CF6882 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		63BEC7BE2530466600CF6882 /* OtherUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserViewController.swift; sourceTree = "<group>"; };
 		63EAD09425229C7100F405FC /* MovieCropper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCropper.swift; sourceTree = "<group>"; };
 		63F31B64251C536500777BDE /* Pet App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pet App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63F31B67251C536500777BDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +104,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				635339AC2520B946001FDFAD /* SnapKit in Frameworks */,
+				63BEC7BC25303C0C00CF6882 /* NVActivityIndicatorView in Frameworks */,
 				635B92A62529BC170029A180 /* IQKeyboardManagerSwift in Frameworks */,
 				63521920251E681F00A4E876 /* AnimatedCollectionViewLayout in Frameworks */,
 				DB0809444FAFB86D327709F2 /* Pods_Pet_App.framework in Frameworks */,
@@ -152,6 +160,16 @@
 			path = CameraController;
 			sourceTree = "<group>";
 		};
+		63BEC7C12530467300CF6882 /* HomeController */ = {
+			isa = PBXGroup;
+			children = (
+				63BEC7BE2530466600CF6882 /* OtherUserViewController.swift */,
+				63F31B85251C877000777BDE /* HomeViewController.swift */,
+				632CE5FC2529656A00D073AC /* StartViewController.swift */,
+			);
+			path = HomeController;
+			sourceTree = "<group>";
+		};
 		63F31B5B251C536400777BDE = {
 			isa = PBXGroup;
 			children = (
@@ -183,11 +201,12 @@
 				63F31B67251C536500777BDE /* AppDelegate.swift */,
 				63F31B69251C536500777BDE /* SceneDelegate.swift */,
 				63F31B6B251C536500777BDE /* ViewController.swift */,
-				632CE5FC2529656A00D073AC /* StartViewController.swift */,
-				63F31B85251C877000777BDE /* HomeViewController.swift */,
-				63BEC7B7252F4ACC00CF6882 /* PostViewController.swift */,
-				6320C3C0252C5656005A417A /* Contents.swift */,
+				6318E75525308FE800FBB91E /* extension.swift */,
+				63BEC7C12530467300CF6882 /* HomeController */,
+				6318E7582530C62D00FBB91E /* GoodViewController.swift */,
+				636C765D25314682008F548C /* CollectionViewCell.swift */,
 				632CE58C2525E2C300D073AC /* CameraController */,
+				6318E75D2530C66800FBB91E /* PetViewController.swift */,
 				632CE5A62527146D00D073AC /* UserViewController.swift */,
 				63F31B6D251C536500777BDE /* Main.storyboard */,
 				63F31B89251C8CED00777BDE /* blueblack.jpg */,
@@ -230,6 +249,7 @@
 				6352191F251E681F00A4E876 /* AnimatedCollectionViewLayout */,
 				635339AB2520B946001FDFAD /* SnapKit */,
 				635B92A52529BC170029A180 /* IQKeyboardManagerSwift */,
+				63BEC7BB25303C0C00CF6882 /* NVActivityIndicatorView */,
 			);
 			productName = "Pet App";
 			productReference = 63F31B64251C536500777BDE /* Pet App.app */;
@@ -262,6 +282,7 @@
 				6352191E251E681F00A4E876 /* XCRemoteSwiftPackageReference "AnimatedCollectionViewLayout" */,
 				635339AA2520B946001FDFAD /* XCRemoteSwiftPackageReference "SnapKit" */,
 				635B92A42529BC170029A180 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				63BEC7BA25303C0C00CF6882 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 			);
 			productRefGroup = 63F31B65251C536500777BDE /* Products */;
 			projectDirPath = "";
@@ -356,14 +377,17 @@
 				63F31B6C251C536500777BDE /* ViewController.swift in Sources */,
 				632CE5A72527146D00D073AC /* UserViewController.swift in Sources */,
 				635339A72520579A001FDFAD /* UploadViewController.swift in Sources */,
+				6318E7592530C62D00FBB91E /* GoodViewController.swift in Sources */,
+				6318E75625308FE800FBB91E /* extension.swift in Sources */,
+				6318E75E2530C66800FBB91E /* PetViewController.swift in Sources */,
 				63EAD09525229C7100F405FC /* MovieCropper.swift in Sources */,
+				63BEC7BF2530466600CF6882 /* OtherUserViewController.swift in Sources */,
 				63F31B68251C536500777BDE /* AppDelegate.swift in Sources */,
-				6320C3C1252C5656005A417A /* Contents.swift in Sources */,
 				632CE5FD2529656A00D073AC /* StartViewController.swift in Sources */,
+				636C765E25314682008F548C /* CollectionViewCell.swift in Sources */,
 				635339A325203150001FDFAD /* RecordViewController.swift in Sources */,
 				63F31B6A251C536500777BDE /* SceneDelegate.swift in Sources */,
 				63F31B86251C877000777BDE /* HomeViewController.swift in Sources */,
-				63BEC7B8252F4ACC00CF6882 /* PostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,6 +617,14 @@
 				minimumVersion = 6.5.6;
 			};
 		};
+		63BEC7BA25303C0C00CF6882 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -610,6 +642,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 635B92A42529BC170029A180 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		63BEC7BB25303C0C00CF6882 /* NVActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 63BEC7BA25303C0C00CF6882 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

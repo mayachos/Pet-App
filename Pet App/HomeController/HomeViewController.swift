@@ -11,24 +11,34 @@ import AVFoundation
 import MediaPlayer
 import AVKit
 import Firebase
+import NVActivityIndicatorView
 
 class HomeViewController: UIViewController, UICollectionViewDelegate,  UICollectionViewDataSource {
-    let storage = Storage.storage()
     let ref = Database.database().reference()
     var snap: DataSnapshot!
     var loadTimer: Timer?
+    var activityIndicatorView: NVActivityIndicatorView!
+    let user = Auth.auth().currentUser
+    let userDefaults = UserDefaults.standard
     
     //let userDefaults = UserDefaults.standard
     
     let isInfinity = true //無限スクロール
     @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet var profileImageView: UIImageView!
+    @IBOutlet var profileImageButton: UIButton!
     @IBOutlet var userName: UILabel!
     @IBOutlet var goodButton: UIButton!
     
     var player: AVPlayer?
     let moviePlayerLayer = AVPlayerLayer()
     var adopt = false
+    var userId: String!
+    var key: String!
+    var good: Int = 0
+    var goodJudge: Bool = false
+    var uName: String!
+    var url: String!
+    var goodArray: [String] = [""]
     
     var pageCount = 10
     var contentsArray = [DataSnapshot]()
@@ -39,14 +49,18 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,  UICollect
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loadImageView()
+        activityIndicatorView.startAnimating()
         self.fetchContentsData()
         collectionView.delegate = self
         collectionView.dataSource = self
-
+        goodArray = userDefaults.array(forKey: "good") as? [String] ?? [""]
+        self.view.addSubview(activityIndicatorView)
     }
     override func viewWillAppear(_ animated: Bool) {
         self.layoutCollection()
     }
+    
     
     func layoutCollection() {
         let layout = AnimatedCollectionViewLayout()
@@ -68,36 +82,58 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,  UICollect
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         if snap != nil {
-            if indexPath.row != 0 {
-                let preitem = contentsArray[indexPath.row-1]
+            if pageCount-indexPath.row-1 != 0 {
+                let preitem = contentsArray[pageCount-indexPath.row-2]
                 let precontent = preitem.value as! Dictionary<String, Any>
                 let preurl = String(describing: precontent["videoURL"]!)
                 player?.pause()
                 player = nil
                 print(URL(string: preurl)!)
             }
-            let item = contentsArray[indexPath.row]
+            let item = contentsArray[pageCount-indexPath.row-1]
             let content = item.value as! Dictionary<String, Any>
 
-            let url = String(describing: content["videoURL"]!)
+            url = String(describing: content["videoURL"]!)
             player = AVPlayer(url: URL(string: url)!)
             print(URL(string: url)!)
-            let uName = String(describing: content["author"]!)
+            uName = String(describing: content["author"]!)
             userName.text = uName
             if content["adopt"] != nil {
                 adopt = content["adopt"] as! Bool
             }
+            userId = content["uid"] as? String
+            key = content["key"] as? String
+            good = content["good"] as? Int ?? 0
         } else {
             let fileName = "Dog - 14869"
             let fileExtension = "mp4"
             let sampleUrl = Bundle.main.url(forResource: fileName, withExtension: fileExtension)!
             player = AVPlayer(url: sampleUrl)
         }
+        activityIndicatorView.stopAnimating()
         moviePlayerLayer.player = player
         self.playerLayer()
         cell.layer.insertSublayer(moviePlayerLayer, at: 0)
         //cell.backgroundColor = color[indexPath.row]
         player!.play()
+        
+        let ans = goodArray.filter{$0 == String(describing: key!)}
+        if ans == [] {
+            goodJudge = false
+        } else {
+            goodJudge = true
+        }
+        
+        if goodJudge {
+            if adopt {
+                goodButton.setImage(UIImage(named: "yellow_heart.png"), for: .normal)
+            } else {
+                goodButton.setImage(UIImage(named: "pink_heart.png"), for: .normal)
+            }
+        } else {
+            //いいねを外す
+            goodButton.setImage(UIImage(named: "empty_heart.png"), for: .normal)
+        }
         return cell
     }
     
@@ -120,12 +156,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,  UICollect
         //carouselView.scrollToFirstItem()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        player?.pause()
+        activityIndicatorView.stopAnimating()
+    }
     
     func fetchContentsData() {
         
         DispatchQueue.global(qos: .userInitiated).async { [self] in
             //child以降は新しい順に並べ替え
-            ref.child("timeline").observe(.value, with: { (snapShot) in
+            ref.child("timeline").queryLimited(toLast: 100).queryOrdered(byChild: "postDate").observe(.value, with: { (snapShot) in
                 
                 dump(snapShot)
                 //if snapShot.children.allObjects is DataSnapshot {
@@ -153,6 +193,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,  UICollect
         self.collectionView.reloadData()
     }
     
+    func loadImageView(){
+        let type = NVActivityIndicatorType.ballRotateChase
+        activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: self.view.bounds.width/2-50, y: self.view.bounds.height/2-50, width: 100, height: 100), type: type, color: UIColor(hex: "2673B8"))
+    }
+    
     func convertTimeStamp(serverTimeStamp: CLong) -> String {
         let x = serverTimeStamp / 1000
         let date = Date(timeIntervalSince1970: TimeInterval(x))
@@ -164,7 +209,36 @@ class HomeViewController: UIViewController, UICollectionViewDelegate,  UICollect
     }
 
     @IBAction func goodTapButton() {
-        
+        if goodJudge {
+            //いいねを外す
+            good -= 1
+            goodJudge = false
+            goodButton.setImage(UIImage(named: "empty_heart.png"), for: .normal)
+            goodArray.remove(String(describing: key!))
+        } else {
+            good += 1
+            goodJudge = true
+            if adopt {
+                goodButton.setImage(UIImage(named: "yellow_heart.png"), for: .normal)
+            } else {
+                goodButton.setImage(UIImage(named: "pink_heart.png"), for: .normal)
+            }
+            goodArray.append(String(describing: key!))
+        }
+        let post = ["good" : good] as [String : Any]
+        ref.child("timeline").child(String(describing: key!)).updateChildValues(post)
+        ref.child("user").child(String(describing: userId!)).child("video").child(String(describing: key!)).updateChildValues(post)
+//        let uPost = ["goodVideo" : String(describing: key!)] as [String : Any]
+//        ref.child("user").child(user!.uid).child("goodVideo").updateChildValues(uPost)
+       userDefaults.set(goodArray, forKey: "good")
+    }
+    
+    
+    @IBAction func userProfileView() {
+        let storyboard: UIStoryboard = self.storyboard!
+        let nextVC = storyboard.instantiateViewController(withIdentifier: "OtherUserViewController") as! OtherUserViewController
+        nextVC.userId = self.userId
+        self.present(nextVC, animated: true, completion: nil)
     }
     /*
     // MARK: - Navigation

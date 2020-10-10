@@ -1,13 +1,13 @@
 //
-//  PostViewController.swift
+//  PetViewController.swift
 //  Pet App
 //
-//  Created by maya on 2020/10/08.
+//  Created by maya on 2020/10/10.
 //
 
 import UIKit
 
-class PostViewController: UIViewController {
+class PetViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

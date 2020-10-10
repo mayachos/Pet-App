@@ -9,22 +9,28 @@ import UIKit
 import AVFoundation
 import Photos
 import SnapKit
+import NVActivityIndicatorView
 
 class RecordViewController: UIViewController, AVCaptureFileOutputRecordingDelegate {
     
     let fileOutput = AVCaptureMovieFileOutput()
+    var activityIndicatorView: NVActivityIndicatorView!
     
     var recordButton: UIButton!
     var isRecording = false
     var videoTimer: Timer?
     var loadTimer: Timer?
     var sendUrl: URL!
-    let dispatchGroup = DispatchGroup()
+    var loadComplete = 0
+    let semaphore = DispatchSemaphore(value: 0)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.loadImageView()
         self.setUp()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.view.addSubview(activityIndicatorView)
     }
     
     func setUp() {
@@ -64,7 +70,7 @@ class RecordViewController: UIViewController, AVCaptureFileOutputRecordingDelega
     }
     func setUpButton() {
         recordButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        recordButton.backgroundColor = UIColor.gray
+        recordButton.backgroundColor = UIColor(hex: "5E554C")
         recordButton.layer.masksToBounds = true
         recordButton.setTitle("録画開始", for: UIControl.State.normal)
         recordButton.layer.cornerRadius = 50.0
@@ -83,7 +89,7 @@ class RecordViewController: UIViewController, AVCaptureFileOutputRecordingDelega
             fileOutput.startRecording(to: fileURL as URL, recordingDelegate: self)
             
             isRecording = true
-            recordButton.backgroundColor = UIColor.red
+            recordButton.backgroundColor = UIColor(hex: "FB6979")
             recordButton.setTitle("録画中", for: .normal)
             self.videoTimer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(self.stopVideo(_:)), userInfo: nil, repeats: false)
         } else {
@@ -97,35 +103,41 @@ class RecordViewController: UIViewController, AVCaptureFileOutputRecordingDelega
         fileOutput.stopRecording()
         
         isRecording = false
-        recordButton.backgroundColor = UIColor.gray
+        recordButton.backgroundColor = UIColor(hex: "5E554C")
+        
         recordButton.setTitle("録画開始", for: .normal)
         
         videoTimer?.invalidate()
-        
+        activityIndicatorView.startAnimating()
     }
     
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
+        
         let croppedMovieFileURL: URL = outputFileURL
-        
-            saveMovie(outputFileURL: outputFileURL, croppedMovieFileURL: croppedMovieFileURL)
-        
-            toUploadView(self)
+        saveMovie(outputFileURL: outputFileURL, croppedMovieFileURL: croppedMovieFileURL)
     }
     func saveMovie(outputFileURL: URL, croppedMovieFileURL: URL) {
         //録画した動画を正方形にクロッピング
-        MovieCropper.exportSquareMovie(sourceURL: outputFileURL, destinationURL: croppedMovieFileURL, fileType: .mov, completion: {
-            DispatchQueue.global(qos: .userInitiated).async { [self] in
+            MovieCropper.exportSquareMovie(sourceURL: outputFileURL, destinationURL: croppedMovieFileURL, fileType: .mov, completion: {
                 //ライブラリへ保存
                 PHPhotoLibrary.shared().performChanges({PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputFileURL)
                 }) {
                     completed, error in
                     if completed {
                         print("Video is saved!")
+                        self.semaphore.signal()
                     }
                 }
-            }
-        })
+            })
+        semaphore.wait()
+        self.activityIndicatorView.stopAnimating()
         sendUrl = outputFileURL
+        toUploadView(self)
+    }
+    
+    func loadImageView(){
+        let type = NVActivityIndicatorType.ballRotateChase
+        activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: self.view.bounds.width/2-50, y: self.view.bounds.height/2-50, width: 50, height: 50), type: type, color: UIColor(hex: "2673B8"))
     }
     
     func toUploadView(_ sender: Any) {

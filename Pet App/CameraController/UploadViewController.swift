@@ -24,6 +24,7 @@ class UploadViewController: UIViewController {
     var setUrl: URL!
     var url: URL!
     private var observers: (NSObjectProtocol)?
+    var loadComplete: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +35,6 @@ class UploadViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         //self.playVideo(url: url)
-        
         let player = AVPlayer(url: url)
         player.play()
         // AVPlayer用のLayerを生成
@@ -84,9 +84,12 @@ class UploadViewController: UIViewController {
                                     //"profileImage" : user.photoURL as Any,
                                     "videoURL" : url!.absoluteString as Any,
                                     "adopt" : adopt,
-                                    "postDate" : ServerValue.timestamp()] as [String : Any]
+                                    "postDate" : ServerValue.timestamp(),
+                                    "key" : key,
+                                    "good" : 0] as [String : Any]
                         let postU = ["videoURL" : url!.absoluteString as Any,
-                                     "postDate" : ServerValue.timestamp()]
+                                     "postDate" : ServerValue.timestamp(),
+                                     "good" : 0]
                         let childUpDates = ["/timeline/\(key)" : postT,
                                             "/user/\(user.uid)/video/\(key)" : postU]
                         //databaseに送信

@@ -116,13 +116,3 @@ class StartViewController: UIViewController {
     */
 
 }
-extension UIViewController {
-    func displayMyAlertMessage(userMessage: String){
-        
-        let myAlert = UIAlertController(title:"Alert", message: userMessage, preferredStyle:  UIAlertController.Style.alert)
-        let okAction = UIAlertAction(title:"OK", style: UIAlertAction.Style.default, handler:nil)
-        myAlert.addAction(okAction)
-        self.present(myAlert, animated:true, completion:nil)
-    }
-}
-

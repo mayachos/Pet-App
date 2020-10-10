@@ -13,6 +13,7 @@ class UserViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     var ref: DatabaseReference!
     var snap: DataSnapshot!
     var userDefaults = UserDefaults.standard
+    let semaphore = DispatchSemaphore(value: 0)
     
     let user = Auth.auth().currentUser
     @IBOutlet var nameTextField: UITextField!
@@ -38,6 +39,7 @@ class UserViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         picker.delegate = self
         picker.dataSource = self
         ref = Database.database().reference()
+        self.fetchProfile()
         if let user = user {
             // The user's ID, unique to the Firebase project.
             // Do NOT use this value to authenticate with your backend server,
@@ -50,7 +52,6 @@ class UserViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             nameTextField.text = userName
             //profileImage.image = getImageByUrl(url: photoURL!)
         }
-        self.fetchProfile()
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -76,15 +77,16 @@ class UserViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         areaLabel.text = area
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
+        semaphore
         if snap != nil {
             let content = userProfile.value as! Dictionary<String, Any>
             adopt = content["adopt"] as? Bool ?? false
             area = content["area"] as? String ?? ""
             address = content["address"] as? String ?? ""
+            self.adoptJuddge(juddge: adopt)
+            switchButton.isOn = adopt
         }
-        self.adoptJuddge(juddge: adopt)
-        switchButton.isOn = adopt
     }
     
     func fetchProfile() {
@@ -99,6 +101,7 @@ class UserViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             //}
             self.reload()
         })
+        semaphore.signal()
     }
     
     func reload() {
@@ -121,6 +124,7 @@ class UserViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             addressField.isHidden = false
             picker.isHidden = false
             areaLabel.text = area
+            addressField.text = address
             areaTextLabel.text = "地域"
             addressLabel.text = "連絡先"
         } else {
